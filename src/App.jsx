@@ -13,11 +13,11 @@ const App = () => {
       .then(initialPersons => {
         setPersons(initialPersons)
       })
-      .catch(error => {
+      .catch(() => {
+        // eslint-disable-next-line no-console
         console.log('Something went wrong while fetching the phonebook.')
-        console.log(error)
       })
-    }, [])
+  }, [])
 
   return (
     <div>

@@ -11,15 +11,15 @@ app.use(express.static('dist'))
 app.use(express.json())
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
-app.get('/', (request, response) => {
+app.get('/', (_request, response) => {
   response.send('<h1>Welcome to the Phonebook API</h1>')
 })
 
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.send('ok')
 })
 
-app.get('/api/info', (request, response, next) => {
+app.get('/api/info', (_request, response, next) => {
   Person.find({}).then(persons => {
     response.send(`<p>Phonebook has info for ${persons.length} persons</p><p>${new Date()}</p>`)
   })
@@ -90,14 +90,13 @@ app.put('/api/persons/:id', (request, response, next) => {
 
 app.delete('/api/persons/:id', (request, response, next) => {
   const id = request.params.id
-  Person.findByIdAndDelete(id).then(result => {
+  Person.findByIdAndDelete(id).then(() => {
     response.status(204).end()
   })
     .catch(error =>  next(error))
 })
 
-const errorHandler = (error, request, response, next) => {
-  console.error(error.message)
+const errorHandler = (error, _request, response, next) => {
   if (error.name === 'CastError') {
     return response.status(400).send({ error: 'Malformatted ID' })
   } else if (error.name === 'ValidationError') {
@@ -111,5 +110,6 @@ app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`Server running on port ${PORT}`)
 })

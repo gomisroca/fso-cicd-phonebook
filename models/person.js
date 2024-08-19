@@ -4,10 +4,12 @@ const db_url = process.env.MONGODB_URI
 mongoose.set('strictQuery', false)
 
 mongoose.connect(db_url)
-  .then(result => {
+  .then(_result => {
+    // eslint-disable-next-line no-console
     console.log('Connected to MongoDB')
   })
   .catch(error => {
+    // eslint-disable-next-line no-console
     console.log('error connecting to MongoDB:', error.message)
   })
 
@@ -31,7 +33,7 @@ const personSchema = new mongoose.Schema({
 })
 
 personSchema.set('toJSON', {
-  transform: (document, returnedObject) => {
+  transform: (_document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
     delete returnedObject.__v

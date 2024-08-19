@@ -45,6 +45,7 @@ module.exports = {
       "error", { "before": true, "after": true }
     ],
     "no-console": "error",
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "react/react-in-jsx-scope": "off",
   }
 }
