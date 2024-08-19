@@ -16,14 +16,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '16'
+          
       - name: Install dependencies
         run: npm install
 
       - name: Run Lint
         run: npm run eslint
-
-      - name: Build
-        run: npm run build
           
   deployment:
     if: ${{ github.event_name == 'push' && !contains(toJson(github.event.commits.*.message),'#skip') }}
@@ -31,6 +29,15 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
 
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - name: Deploy to Fly.io
