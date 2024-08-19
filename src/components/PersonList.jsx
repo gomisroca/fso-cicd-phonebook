@@ -21,10 +21,10 @@ function PersonList({ persons, handleSetPersons }) {
   return (
     <div>
       {persons.sort((a, b) => a.id - b.id).map(person =>
-      <p key={person.id}>
-        {person.name} {person.number}
-        <button onClick={() => handleDelete(person.id)}>Delete</button>
-      </p>)}
+        <p key={person.id}>
+          {person.name} {person.number}
+          <button onClick={() => handleDelete(person.id)}>Delete</button>
+        </p>)}
     </div>
   )
 }

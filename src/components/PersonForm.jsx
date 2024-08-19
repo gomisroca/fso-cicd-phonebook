@@ -17,18 +17,18 @@ function PersonForm({ persons, handleSetPersons }) {
         existingPerson.number = newNumber
 
         personsService
-        .update(existingPerson.id, existingPerson)
-        .then(updatedPerson => {
-          let newPersons = persons.filter(person => person.id !== existingPerson.id)
-          newPersons.push(updatedPerson)
-          handleSetPersons(newPersons)
-          setSuccessMessage(`Updated ${updatedPerson.name}`)
-          setErrorMessage(null)
-        })
-        .catch(() => {
-          setErrorMessage(`Information of ${existingPerson.name} has already been removed from server.`)
-          setSuccessMessage(null)
-        })
+          .update(existingPerson.id, existingPerson)
+          .then(updatedPerson => {
+            let newPersons = persons.filter(person => person.id !== existingPerson.id)
+            newPersons.push(updatedPerson)
+            handleSetPersons(newPersons)
+            setSuccessMessage(`Updated ${updatedPerson.name}`)
+            setErrorMessage(null)
+          })
+          .catch(() => {
+            setErrorMessage(`Information of ${existingPerson.name} has already been removed from server.`)
+            setSuccessMessage(null)
+          })
       }
     }
     else {
