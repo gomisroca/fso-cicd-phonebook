@@ -4,7 +4,7 @@ const db_url = process.env.MONGODB_URI
 mongoose.set('strictQuery', false)
 
 mongoose.connect(db_url)
-  .then(_result => {
+  .then(() => {
     // eslint-disable-next-line no-console
     console.log('Connected to MongoDB')
   })
