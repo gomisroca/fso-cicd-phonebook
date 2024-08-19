@@ -1,0 +1,24 @@
+name: Health check pipeline
+
+on:
+  push:
+    branches:
+      - master
+  # schedule:
+  #   - cron: '30 * * * *'
+
+jobs:
+  health_check:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check deployed URL health
+        uses: jtalk/url-health-check-action@v4
+        with:
+          # Check the following URLs one by one sequentially
+          url: https://phonebook-restless-sun-7134.fly.dev/
+          # Follow redirects, or just report success on 3xx status codes
+          follow-redirect: false # Optional, defaults to "false"
+          # Fail this action after this many failed attempts
+          max-attempts: 3 # Optional, defaults to 1
+          # Delay between retries
+          retry-delay: 5s
