@@ -69,10 +69,10 @@ function PersonForm({ persons, handleSetPersons }) {
         {errorMessage && <Notification message={errorMessage} type='error' />}
         <form onSubmit={addPerson}>
             <div>
-              Name: <input value={newName} onChange={handleNameChange} />
+              Name: <input data-testid='name' value={newName} onChange={handleNameChange} />
             </div>
             <div>
-              Number: <input value={newNumber} onChange={handleNumberChange} />
+              Number: <input data-testid='number' value={newNumber} onChange={handleNumberChange} />
             </div>
             <div>
               <button type="submit">Add Person</button>
